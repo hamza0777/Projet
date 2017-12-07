@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
@@ -16,6 +15,16 @@
 </head>
 <body>
 
+<% 
+
+String err=(String)request.getAttribute("msg");
+if(err==null)
+{
+	err="";
+}else{
+	out.println(err);	
+}
+%>
 <div class="container-full">
     <div class="row" id="bar">
         <div class="col-lg-12 bonde">

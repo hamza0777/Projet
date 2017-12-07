@@ -29,9 +29,7 @@ public class base {
 	 
 	 public void ajoututilisateur(Utilisateur utilisateur){
 			loaddatabase();
-			
-			
-			
+
 			String query="INSERT INTO `user` (`Id_user`, `Nom_user`, `prenom_user`, `email_user`, `pass_user`, `image`, type_user)"
 					+ " VALUES (NULL, ?, ?, ?, ?, NULL,0)";
 			
@@ -42,32 +40,37 @@ public class base {
 				prepdStmt.setString(3, utilisateur.getEmail_user());	
 				prepdStmt.setString(4, utilisateur.getPass_user());
 				//prepdStmt.setString(5, obj.getType_user());
-						
 				prepdStmt.executeUpdate(); 
 				
 			}catch (SQLException e){
-				
 				e.printStackTrace();
+			}finally{
+				if ( connexion != null ) {
+	    	        try {
+	    	            connexion.close();
+	    	        }catch ( SQLException ignore ) {
+	    	        }
+	    	    }
 			}
-		}
-	 public int verifemail(String email){
-		 int R=0;
-		 //String req="SELECT email_user FROM user WHERE email_user="+email;
+			}
+	 public boolean verifemail(String email){
+		 loaddatabase();
+		 boolean test=false;
+		 String req="SELECT email_user FROM user WHERE email_user=?";
 	
 	  try {
 		 statement = (Statement) connexion.createStatement();
-		 ResultSet resultat= statement.executeQuery("SELECT email_user FROM user ");
-         
-		  while(resultat.next()){
-			
-			   R=R+1;
-			   
-			  // System.out.println(R);
-		   }
+		 PreparedStatement  prepdStmt = connexion.prepareStatement(req);
+		 prepdStmt.setString(1,email);
+		 ResultSet res=prepdStmt.executeQuery();
+		 boolean exist=res.next();
+		   test=exist;
 	      }catch (Exception e){
-	    	  
+	    	  e.getMessage();
 	      }
-	  return R;  
+	    	    
+	      
+	  return test;  
 	 }
 	
 }
