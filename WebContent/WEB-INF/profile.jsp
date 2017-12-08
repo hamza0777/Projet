@@ -1,3 +1,4 @@
+<%@page import="beans.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
@@ -13,14 +14,17 @@
     <link rel="stylesheet" href="css/profile.css">
 
 </head>
+<%
+Utilisateur users = (Utilisateur)session.getAttribute("users");
+%>
 <body>
 
 
 <div class="container-full">
     <div class="well well-lg">
         <div id="div-infoUser">
-            <img src="image/" class="img-profil">
-            <p id="nom-user"> </p>
+            <img src="image/${users.image_user }" class="img-profil">
+            <p id="nom-user"> ${users.nom_user } ${users.prenom_user }</p>
 
         </div>
         <div class="btn-group" id="btn-profil">
@@ -83,7 +87,7 @@
 
                     <div id="div-img-parametre">
 
-                        <img src="image/" alt="mybook logo" class="photo-profil">
+                        <img src="image/${users.image_user }" alt="mybook logo" class="photo-profil">
                         <span class="span"> </span>
                     </div>
                     <br><br>
@@ -92,22 +96,22 @@
                     <div class="form-group-sm">
                         <form method="post" action="modife-profil.php" id="form" enctype="multipart/form-data">
                             <label>Nom:
-                              <input type="text" class="form-control" name="nom" id="nom" value="" required>
+                              <input type="text" class="form-control" name="nom" id="nom" value="${users.nom_user }" required>
                             </label>
                             <label>Prenom:
-                              <input type="text" class="form-control" name="prnom" id="prnom" value="" required>
+                              <input type="text" class="form-control" name="prnom" id="prnom" value="${users.prenom_user }" required>
                             </label>
 <br>
                             <label>Email:
-                                <input type="email" class="form-control inp" name="email" id="email" value="" required>
+                                <input type="email" class="form-control inp" name="email" id="email" value="${users.email_user }" required>
                             </label>
 <br>
                             <label>Nouveau Mot de passe:
-                                <input type="password" class="form-control inp" name="n_pass" id="n_pass" value=""  required>
+                                <input type="password" class="form-control inp" name="n_pass" id="n_pass" value="${users.pass_user }"  required>
                             </label>
                             <br>
                             <label>Confirmation Mot de passe:
-                                <input type="password" class="form-control inp" name="c_pass" id="c_pass" value="" required>
+                                <input type="password" class="form-control inp" name="c_pass" id="c_pass" value="${users.pass_user }" required>
                             </label>
 
                             <label>Photo De Profile

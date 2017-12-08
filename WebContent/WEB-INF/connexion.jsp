@@ -59,7 +59,7 @@ if(err==null)
 
         <div class="" id="err-email" >
             <label for="email"> Email:
-                <input type="email" class="form-control input-sm" id="email"  name="email">
+                <input type="email" class="form-control input-sm" id="email"  name="email" value="${user.email_user}">
             </label>
             <span style="display: none;" class="help-block" id="m"  ></span>
         </div>

@@ -23,6 +23,8 @@ public class modifier extends HttpServlet {
 		}
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 		}
 	

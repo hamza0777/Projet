@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.servlet.http.HttpSession;
+
 import beans.Utilisateur;
 
 public class base {
@@ -29,9 +32,9 @@ public class base {
 	 
 	 public void ajoututilisateur(Utilisateur utilisateur){
 			loaddatabase();
-
+            
 			String query="INSERT INTO `user` (`Id_user`, `Nom_user`, `prenom_user`, `email_user`, `pass_user`, `image`, type_user)"
-					+ " VALUES (NULL, ?, ?, ?, ?, NULL,0)";
+					+ " VALUES (NULL, ?, ?, ?, ?,?,?)";
 			
 			try {
 				PreparedStatement  prepdStmt = connexion.prepareStatement(query);
@@ -39,7 +42,8 @@ public class base {
 				prepdStmt.setString(2, utilisateur.getPrenom_user());
 				prepdStmt.setString(3, utilisateur.getEmail_user());	
 				prepdStmt.setString(4, utilisateur.getPass_user());
-				//prepdStmt.setString(5, obj.getType_user());
+				prepdStmt.setString(5, utilisateur.getImage_user());
+				prepdStmt.setInt(6, utilisateur.getType_user());
 				prepdStmt.executeUpdate(); 
 				
 			}catch (SQLException e){
@@ -92,5 +96,29 @@ public class base {
 			    } 
 			return err;
 		}
-	
+	 public Utilisateur recherUser(String email){
+		 loaddatabase();
+		 Utilisateur s= new Utilisateur();
+			String	 query = "SELECT *  FROM user Where email_user= ?  ";
+			
+			try{
+			
+			 PreparedStatement  prepdStmt = (PreparedStatement) connexion.prepareStatement(query);
+			 	prepdStmt.setString(1, email);
+			 	ResultSet res = prepdStmt.executeQuery();
+			 	while(res.next()){
+			 		s.setId_user(res.getInt("Id_user"));
+			 		s.setNom_user(res.getString("Nom_user"));
+			 		s.setPrenom_user(res.getString("prenom_user"));
+			 		s.setEmail_user(res.getString("email_user"));
+			 		s.setPass_user(res.getString("pass_user"));
+			 		s.setImage_user(res.getString("image"));
+	 		        
+			 	}
+			 	
+			 			 
+			}catch (SQLException e) {
+			}
+			return s;
+		}
 }

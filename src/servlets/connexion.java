@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bdd.base;
 
@@ -35,9 +36,14 @@ public class connexion extends HttpServlet {
 		{
 			String err="Votre Email ou mot de passe incorecte!";
 			request.setAttribute("msg", err);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+		}else{
+			HttpSession session=request.getSession();
+			session.setAttribute("email", email);
+			response.sendRedirect( request.getContextPath()+"/index");
 		}
 			
-			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+			
 	}
 
 }

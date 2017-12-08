@@ -5,7 +5,7 @@ public class Utilisateur {
 	private String Nom_user;
 	private String prenom_user;
 	private String pass_user;
-	private String type_user;
+	private int type_user;
 	private String email_user;
 	private String image_user;
 	
@@ -37,10 +37,10 @@ public class Utilisateur {
 	public void setPass_user(String pass_user) {
 		this.pass_user = pass_user;
 	}
-	public String getType_user() {
+	public int getType_user() {
 		return type_user;
 	}
-	public void setType_user(String type_user) {
+	public void setType_user(int type_user) {
 		this.type_user = type_user;
 	}
 	public String getEmail_user() {

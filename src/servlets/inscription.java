@@ -30,6 +30,8 @@ public class inscription extends HttpServlet {
 		Utilisateur user = new Utilisateur();
         base b=new base();
         String msg=request.getParameter("email");
+        String img="avatar.png";
+        int type=0;
        boolean rs=b.verifemail(msg);
        
 		if (rs==false)
@@ -38,14 +40,18 @@ public class inscription extends HttpServlet {
 			user.setPrenom_user(request.getParameter("prnom"));
 			user.setPass_user(request.getParameter("pass"));
 			user.setEmail_user(request.getParameter("email"));
+			user.setImage_user(img);
+			user.setType_user(type);
 			b.ajoututilisateur(user);
+			request.setAttribute("user", user);
+			response.sendRedirect( request.getContextPath()+"/connexion");
 		 }else{
 			 String err="Votre Email est deja utiliser!";
 			 request.setAttribute("msg", err);
+			 this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
 			 }
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
-		
+		 
 	}
 
 }
