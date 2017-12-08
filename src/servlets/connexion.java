@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bdd.base;
+
 @WebServlet("/connexion")
 public class connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,10 +21,23 @@ public class connexion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		base b=new base();
+		String email= request.getParameter("email");
+		String pass= request.getParameter("pass");
+		
+		boolean rs =b.virfConex(pass,email);
+		if (rs==false)
+		{
+			String err="Votre Email ou mot de passe incorecte!";
+			request.setAttribute("msg", err);
+		}
+			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
 	}
 
 }

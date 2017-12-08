@@ -26,6 +26,13 @@
     <servlet-name>inscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
- 
+ <servlet>
+    <servlet-name>modifier</servlet-name>
+    <servlet-class>servlets.modifier</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modifier</servlet-name>
+    <url-pattern>/modifier</url-pattern>
+  </servlet-mapping>
 </web-app>
  </elment>

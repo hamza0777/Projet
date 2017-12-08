@@ -72,5 +72,25 @@ public class base {
 	      
 	  return test;  
 	 }
+	 
+	 public boolean virfConex(String pass ,String email ) {
+		 loaddatabase();
+			boolean err=false;
+			
+			 try {
+				 String	 query = "SELECT * FROM user Where email_user= ? && pass_user=? ";
+				 PreparedStatement  prepdStmt = (PreparedStatement) connexion.prepareStatement(query);
+				 			prepdStmt.setString(1, email);
+				 			prepdStmt.setString(2, pass);
+				 			 ResultSet res = prepdStmt.executeQuery();
+				 			boolean encore = res.next();
+				 			
+				 			err=encore;
+
+			    } catch (SQLException e ) {
+			        
+			    } 
+			return err;
+		}
 	
 }

@@ -16,7 +16,6 @@
 <body>
 
 <% 
-
 String err=(String)request.getAttribute("msg");
 if(err==null)
 {

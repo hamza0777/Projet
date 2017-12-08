@@ -14,7 +14,16 @@
 
 </head>
 <body>
+<% 
 
+String err=(String)request.getAttribute("msg");
+if(err==null)
+{
+	err="";
+}else{
+	out.println(err);	
+}
+%>
 <div class="container-full">
     <div class="row" id="bar">
         <div class="col-lg-12 bonde">
@@ -72,12 +81,6 @@
 
     </form>
 </div>
-
-
-
-
-
-
 
 <script src="js/jquery.js"></script>
 <script src="js/ex1.js"></script>
