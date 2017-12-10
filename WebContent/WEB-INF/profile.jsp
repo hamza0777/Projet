@@ -23,13 +23,13 @@ if(email==null||email==""){
    }
 %>
 <% 
-//Utilisateur err=(Utilisateur)request.getAttribute("uss");
+Utilisateur userUpp=(Utilisateur)request.getAttribute("uss");
 /*if(err==null)
 {
 	err="";
 }else{*/
 	//String nom=err.getNom_user();
-	out.print(users.getEmail_user());
+	out.print(userUpp.getNom_user());
 //out.println(err.getPrenom_user());
 //}
 %>
@@ -122,7 +122,7 @@ if(email==null||email==""){
                             </label>
 <br>
                             <label>Email:
-                                <input type="email" class="form-control inp"  disabled="disabled" name="email" id="email" value="${users.email_user }" required>
+                                <input type="email" class="form-control inp"  readonly="readonly" name="email" id="email" value="${users.email_user }" required>
                             </label>
 <br>
                             <label>Nouveau Mot de passe:
