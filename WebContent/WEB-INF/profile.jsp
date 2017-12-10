@@ -16,6 +16,22 @@
 </head>
 <%
 Utilisateur users = (Utilisateur)session.getAttribute("users");
+
+ String email =(String) request.getAttribute("email");
+if(email==null||email==""){
+	   response.sendRedirect( request.getContextPath()+"/connexion");
+   }
+%>
+<% 
+//Utilisateur err=(Utilisateur)request.getAttribute("uss");
+/*if(err==null)
+{
+	err="";
+}else{*/
+	//String nom=err.getNom_user();
+	out.print(users.getEmail_user());
+//out.println(err.getPrenom_user());
+//}
 %>
 <body>
 
@@ -67,8 +83,11 @@ Utilisateur users = (Utilisateur)session.getAttribute("users");
 
                       <a href="home.php?br=T.G TMW" class="lien-page pos-lient">Rappots T.G TMW </a>
                   </div>
-
-                  <li><a href="parametre.php" >Paramétres</a> </li>
+               <%int type= users.getType_user(); 
+                  if (!(type == 0)){  
+                  %>
+             <li><a href="parametre.php" >Paramétres</a> </li>
+                  <% } %> 
               </ul>
             </nav>
 
@@ -94,16 +113,16 @@ Utilisateur users = (Utilisateur)session.getAttribute("users");
 
                     <!-- nom et prenom-->
                     <div class="form-group-sm">
-                        <form method="post" action="modife-profil.php" id="form" enctype="multipart/form-data">
+                        <form method="post" action="" id="form" >
                             <label>Nom:
                               <input type="text" class="form-control" name="nom" id="nom" value="${users.nom_user }" required>
                             </label>
                             <label>Prenom:
-                              <input type="text" class="form-control" name="prnom" id="prnom" value="${users.prenom_user }" required>
+                              <input type="text" class="form-control" name="prenom" id="prnom" value="${users.prenom_user }" required>
                             </label>
 <br>
                             <label>Email:
-                                <input type="email" class="form-control inp" name="email" id="email" value="${users.email_user }" required>
+                                <input type="email" class="form-control inp"  disabled="disabled" name="email" id="email" value="${users.email_user }" required>
                             </label>
 <br>
                             <label>Nouveau Mot de passe:

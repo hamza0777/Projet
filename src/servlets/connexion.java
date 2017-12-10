@@ -36,7 +36,7 @@ public class connexion extends HttpServlet {
 		{
 			String err="Votre Email ou mot de passe incorecte!";
 			request.setAttribute("msg", err);
-			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+			response.sendRedirect( request.getContextPath()+"/connexion");
 		}else{
 			HttpSession session=request.getSession();
 			session.setAttribute("email", email);

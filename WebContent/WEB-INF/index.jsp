@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
-    Utilisateur users = (Utilisateur)session.getAttribute("users");
+   Utilisateur users = (Utilisateur)session.getAttribute("users");
     
 	 String email =(String) request.getAttribute("email");
     if(email==null||email==""){
@@ -26,6 +26,7 @@
 
 </head>
 <body>
+
 <div class="container-full">
     <div class="well well-lg">
         <div id="div-infoUser">
@@ -73,12 +74,15 @@
 
                       <a href="home.php?br=T.G TMW" class="lien-page pos-lient">Rappots T.G TMW </a>
                   </div>
-             
-                  
+                 <%int type= users.getType_user(); 
+                  if (!(type == 0)){  
+                  %>
+             <li><a href="parametre.php" >Paramétres</a> </li>
+                  <% } %> 
               </ul>
             </nav>
- <li> <a href="parametre.php" > </a> </li>
-${ users.type_user==1>
+ 
+
         </div>
         <div class="col-lg-7" id="container-rapport">
             <h2 id="h2">Accueil </h2>

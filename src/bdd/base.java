@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.servlet.http.HttpSession;
+
 
 import beans.Utilisateur;
 
@@ -113,7 +113,7 @@ public class base {
 			 		s.setEmail_user(res.getString("email_user"));
 			 		s.setPass_user(res.getString("pass_user"));
 			 		s.setImage_user(res.getString("image"));
-	 		        
+			 		s.setType_user(res.getInt("type_user"));
 			 	}
 			 	
 			 			 
@@ -121,4 +121,21 @@ public class base {
 			}
 			return s;
 		}
+	 public void modifier(Utilisateur users){
+		 loaddatabase();
+		 
+		 String query = "UPDATE user SET Nom_user='?' ,prenom_user='?' ,email_user='?' ,pass_user='?' WHERE id='?'";
+				 try {
+					 PreparedStatement  prepdStmt = connexion.prepareStatement(query);
+						prepdStmt.setString(1, users.getNom_user());
+						prepdStmt.setString(2, users.getPrenom_user());
+						prepdStmt.setString(3, users.getEmail_user());	
+						prepdStmt.setString(4, users.getPass_user());
+						prepdStmt.setInt(5, users.getId_user());
+						prepdStmt.executeUpdate();
+				 }
+				 catch (SQLException e) {
+				 }
+	 }
+	 
 }

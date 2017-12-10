@@ -43,7 +43,7 @@ public class inscription extends HttpServlet {
 			user.setImage_user(img);
 			user.setType_user(type);
 			b.ajoututilisateur(user);
-			request.setAttribute("user", user);
+			//request.setAttribute("user", user);
 			response.sendRedirect( request.getContextPath()+"/connexion");
 		 }else{
 			 String err="Votre Email est deja utiliser!";

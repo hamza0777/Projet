@@ -20,11 +20,11 @@ public class index extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		 String email =(String) session.getAttribute("email");
-		 
+		 request.setAttribute("email", email);
 		 
 		   user = b.recherUser(email);
 		   session.setAttribute("users", user);
-		   request.setAttribute("email", email);
+		   
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
