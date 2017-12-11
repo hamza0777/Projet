@@ -1,4 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="beans.Utilisateur"%>
+<%@page import="beans.rapport"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
@@ -26,7 +29,15 @@
 
 </head>
 <body>
+<% 
+List<rapport> list=(ArrayList<rapport>)request.getAttribute("list");
 
+/*for(int i = 0; i < list.size();i++){
+out.println(list.get(i).getId_rapport());
+}*/
+
+
+%>
 <div class="container-full">
     <div class="well well-lg">
         <div id="div-infoUser">
@@ -54,7 +65,7 @@
             </div>
             <nav class="navbar navbar-inverse">
               <ul class="nav navbar-left" id="ul-nav">
-                  <li class="active" > <a href="home">Accueil  </a> </li>
+                  <li class="active" > <a href="index">Accueil  </a> </li>
                     <li class="active" id="a"> <a href="#">Licence Appliquée <span class="caret"></span> </a> </li>
                   <div class="div-nav-page" id="aa"  hidden><br>
                       <a href="home.php?br=T.L.A TMW" class="lien-page pos-lient">-Rappots T.L.A TMW </a>

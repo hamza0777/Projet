@@ -22,17 +22,7 @@ if(email==null||email==""){
 	   response.sendRedirect( request.getContextPath()+"/connexion");
    }
 %>
-<% 
-Utilisateur userUpp=(Utilisateur)request.getAttribute("uss");
-/*if(err==null)
-{
-	err="";
-}else{*/
-	//String nom=err.getNom_user();
-	out.print(userUpp.getNom_user());
-//out.println(err.getPrenom_user());
-//}
-%>
+
 <body>
 
 
@@ -63,7 +53,7 @@ Utilisateur userUpp=(Utilisateur)request.getAttribute("uss");
             </div>
             <nav class="navbar navbar-inverse">
               <ul class="nav navbar-left" id="ul-nav">
-                  <li class="active" > <a href="home">accueil  </a> </li>
+                  <li class="active" > <a href="index">accueil  </a> </li>
                     <li class="active" id="a"> <a href="#">Licence Appliquée <span class="caret"></span> </a> </li>
                   <div class="div-nav-page" id="aa"  hidden><br>
                       <a href="home.php?br=T.L.A TMW" class="lien-page pos-lient">-Rappots T.L.A TMW </a>

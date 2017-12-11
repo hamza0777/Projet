@@ -7,10 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
 import beans.Utilisateur;
+import beans.rapport;
 
 public class base {
 	 private Connection connexion;
@@ -121,21 +124,52 @@ public class base {
 			}
 			return s;
 		}
-	 public void modifier(Utilisateur users){
+	 public void modifier(String nom ,String prenom ,String pass ,String email){
 		 loaddatabase();
 		 
-		 String query = "UPDATE user SET Nom_user='?' ,prenom_user='?' ,email_user='?' ,pass_user='?' WHERE id='?'";
+		 String quer ="UPDATE user SET Nom_user='?' , prenom_user='?' , pass_user='?' WHERE email_user='?'";
 				 try {
-					 PreparedStatement  prepdStmt = connexion.prepareStatement(query);
-						prepdStmt.setString(1, users.getNom_user());
-						prepdStmt.setString(2, users.getPrenom_user());
-						prepdStmt.setString(3, users.getEmail_user());	
-						prepdStmt.setString(4, users.getPass_user());
-						prepdStmt.setInt(5, users.getId_user());
-						prepdStmt.executeUpdate();
+					 PreparedStatement  prepdStmt = connexion.prepareStatement(quer);
+						prepdStmt.setString(1, email);
+						prepdStmt.setString(2, prenom);
+						prepdStmt.setString(3, pass);
+						prepdStmt.setString(4, email);
+						prepdStmt.execute();
+						//System.out.println("cc");
 				 }
 				 catch (SQLException e) {
+					 e.printStackTrace();
 				 }
+	 }
+	 public List<rapport> affiche(){
+		 loaddatabase();
+		 List<rapport> list=new ArrayList<rapport>();
+		 String	 query = "SELECT *  FROM `rapports`";
+			
+			try{
+			
+			 Statement stmt = (Statement) connexion.createStatement();	
+			 	ResultSet res = stmt.executeQuery(query);
+			 	while(res.next()){
+			 		rapport s=new rapport();
+			 		s.setId_rapport(res.getInt("id_rapport"));
+			 		s.setId_user(res.getInt("Id_user"));
+			 		s.setNom_etudi(res.getString("nom_etudi"));
+			 		s.setPrenom_etudiant(res.getString("prenom_etudi"));
+			 		s.setTitre_rapport(res.getString("titre_rapport"));
+			 		s.setRapport(res.getString("rapport"));
+			 		s.setAnnee_rapport(res.getString("annee_rapport()"));
+			 		s.setBranche_etudes(res.getString("branche_etudes"));
+			 		s.setMention_rapport(res.getString("mention_rapport"));
+			 		s.setDescription(res.getString("description"));
+			 		System.out.println(s.toString());
+			 		list.add(s);			 
+			 		}
+			 	
+			 			 
+			}catch (SQLException e) {
+			}
+		 return list;
 	 }
 	 
 }

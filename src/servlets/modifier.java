@@ -15,8 +15,8 @@ import beans.Utilisateur;
 @WebServlet("/modifier")
 public class modifier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Utilisateur users =new Utilisateur();
-	 base b=new base();
+	
+	 
 
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession session = request.getSession();
@@ -29,16 +29,19 @@ public class modifier extends HttpServlet {
 		}
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			/*HttpSession session = request.getSession();
-			users = (Utilisateur)session.getAttribute("users");*/
+			HttpSession session = request.getSession();
+			base b=new base();
+			Utilisateur users = (Utilisateur)session.getAttribute("users");
 			  String nom=request.getParameter("nom");
 			  String prenom=request.getParameter("prenom");
 			  String pass=request.getParameter("n_pass");
-			    Utilisateur userUpp=new Utilisateur();
-			    
-			    userUpp.setNom_user(nom);
-			    
-			    request.setAttribute("uss", userUpp);
+			 
+			  String email =(String) session.getAttribute("email");
+				request.setAttribute("email", email);
+				System.out.println(prenom);
+			 
+				 b.modifier(nom,prenom,pass,email);
+			  response.sendRedirect( request.getContextPath()+"/index");
 			  /*boolean rs=b.verifemail(request.getParameter("email"));
 			    if (rs==false)
 			    {*/
@@ -60,7 +63,7 @@ public class modifier extends HttpServlet {
 			String mail= request.getParameter("email");
 			String pass= request.getParameter("pass");*/
 			
-		        	this.getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+		        	//this.getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 			
 		}
 	
