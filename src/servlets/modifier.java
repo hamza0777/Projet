@@ -38,9 +38,9 @@ public class modifier extends HttpServlet {
 			 
 			  String email =(String) session.getAttribute("email");
 				request.setAttribute("email", email);
-				System.out.println(prenom);
-			 
-				 b.modifier(nom,prenom,pass,email);
+				System.out.println(email);
+				System.out.println(nom);
+				 b.modifier(nom,prenom,pass,"khaled@lq.comk");
 			  response.sendRedirect( request.getContextPath()+"/index");
 			  /*boolean rs=b.verifemail(request.getParameter("email"));
 			    if (rs==false)

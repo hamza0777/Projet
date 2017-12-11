@@ -29,15 +29,7 @@
 
 </head>
 <body>
-<% 
-List<rapport> list=(ArrayList<rapport>)request.getAttribute("list");
 
-/*for(int i = 0; i < list.size();i++){
-out.println(list.get(i).getId_rapport());
-}*/
-
-
-%>
 <div class="container-full">
     <div class="well well-lg">
         <div id="div-infoUser">
@@ -124,47 +116,28 @@ out.println(list.get(i).getId_rapport());
                 </div>
 
             </div>
-
             <div class="row">
+<% 
+List<rapport> list=(ArrayList<rapport>)request.getAttribute("list");
+
+for(int i = 0; i < list.size();i++){
+%>
+            
                 <!-- conteneure de rapport -->
  <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             <img src="../image/logo-pdf.png" alt="logo pdf" class="image-articl">
                 <div class="caption">
-                    <h4><span class="glyphicon glyphicon-education icon-user" ></span>khaled  hizawi</h4>
-                        <p class="pr">gestion stok</p>
+                    <h4><span class="glyphicon glyphicon-education icon-user" ></span><% out.println(list.get(i).getNom_etudi()+" "+list.get(i).getPrenom_etudiant()); %></h4>
+                        <p class="pr"><% out.println(list.get(i).getTitre_rapport()); %></p>
                             <p>
                                 <a href="telacharger.php?id_r=8" class="btn btn-primary btn-xs" role="button">Telecharger <span class="glyphicon glyphicon-cloud-download"></span></a>
                                 <a href="rapport.php?id_rapport=8" class="btn btn-default btn-xs" role="button">Voir Discription <span class="glyphicon glyphicon-eye-open"></span></a>
                             </p>
                         </div>
                     </div>
-                </div><div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src="../image/logo-pdf.png" alt="logo pdf" class="image-articl">
-                <div class="caption">
-                    <h4><span class="glyphicon glyphicon-education icon-user" ></span>khaled  hizawi</h4>
-                        <p class="pr">gestion stok</p>
-                            <p>
-                                <a href="telacharger.php?id_r=9" class="btn btn-primary btn-xs" role="button">Telecharger <span class="glyphicon glyphicon-cloud-download"></span></a>
-                                <a href="rapport.php?id_rapport=9" class="btn btn-default btn-xs" role="button">Voir Discription <span class="glyphicon glyphicon-eye-open"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                </div><div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src="../image/logo-pdf.png" alt="logo pdf" class="image-articl">
-                <div class="caption">
-                    <h4><span class="glyphicon glyphicon-education icon-user" ></span> khaled      jlasii</h4>
-                        <p class="pr">s</p>
-                            <p>
-                                <a href="telacharger.php?id_r=10" class="btn btn-primary btn-xs" role="button">Telecharger <span class="glyphicon glyphicon-cloud-download"></span></a>
-                                <a href="rapport.php?id_rapport=10" class="btn btn-default btn-xs" role="button">Voir Discription <span class="glyphicon glyphicon-eye-open"></span></a>
-                            </p>
-                        </div>
-                    </div>
                 </div>
-
+<% }%>
 					<!--<iframe src="rapports/Sommaire-2.pdf" width="300" height="500" align="middle"></iframe>-->
 
                 <!-- pagination-->

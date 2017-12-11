@@ -127,49 +127,54 @@ public class base {
 	 public void modifier(String nom ,String prenom ,String pass ,String email){
 		 loaddatabase();
 		 
-		 String quer ="UPDATE user SET Nom_user='?' , prenom_user='?' , pass_user='?' WHERE email_user='?'";
-				 try {
-					 PreparedStatement  prepdStmt = connexion.prepareStatement(quer);
-						prepdStmt.setString(1, email);
-						prepdStmt.setString(2, prenom);
-						prepdStmt.setString(3, pass);
-						prepdStmt.setString(4, email);
-						prepdStmt.execute();
-						//System.out.println("cc");
-				 }
-				 catch (SQLException e) {
-					 e.printStackTrace();
-				 }
+
+		 String query ="UPDATE `user` SET "+"`Nom_user` = ?, "	+"`prenom_user` = ?, "+"`pass_user` = ? ,"
+					+ " WHERE "	+ "`email_user` = ?";
+			
+			try {
+				PreparedStatement  prepdStmt = connexion.prepareStatement(query);
+				prepdStmt.setString(1, nom);
+				prepdStmt.setString(2, prenom);
+				prepdStmt.setString(3, pass);
+				prepdStmt.setString(4, email);
+							
+				prepdStmt.execute(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		
 	 }
-	 public List<rapport> affiche(){
-		 loaddatabase();
-		 List<rapport> list=new ArrayList<rapport>();
-		 String	 query = "SELECT *  FROM `rapports`";
-			
-			try{
-			
-			 Statement stmt = (Statement) connexion.createStatement();	
-			 	ResultSet res = stmt.executeQuery(query);
-			 	while(res.next()){
-			 		rapport s=new rapport();
-			 		s.setId_rapport(res.getInt("id_rapport"));
-			 		s.setId_user(res.getInt("Id_user"));
-			 		s.setNom_etudi(res.getString("nom_etudi"));
-			 		s.setPrenom_etudiant(res.getString("prenom_etudi"));
-			 		s.setTitre_rapport(res.getString("titre_rapport"));
-			 		s.setRapport(res.getString("rapport"));
-			 		s.setAnnee_rapport(res.getString("annee_rapport()"));
-			 		s.setBranche_etudes(res.getString("branche_etudes"));
-			 		s.setMention_rapport(res.getString("mention_rapport"));
-			 		s.setDescription(res.getString("description"));
-			 		System.out.println(s.toString());
-			 		list.add(s);			 
-			 		}
-			 	
-			 			 
-			}catch (SQLException e) {
+	 public List<rapport> list() {
+			List<rapport> list=new ArrayList<rapport>();
+			String query = "SELECT * FROM `rapports`";
+			try {
+				Statement stmt=(Statement) connexion.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+				
+				while(rs.next()){
+					rapport s =new rapport();
+					
+					s.setId_rapport(rs.getInt("id_rapport"));
+					s.setId_user(rs.getInt("Id_user"));
+					s.setTitre_rapport(rs.getString("titre_rapport"));
+					s.setNom_etudi(rs.getString("nom_etudi"));
+					s.setPrenom_etudiant(rs.getString("prenom_etudiant"));
+					s.setTitre_rapport(rs.getString("rapport"));
+					s.setAnnee_rapport(rs.getString("annee_rapport"));
+					s.setBranche_etudes(rs.getString("branche_etudes"));
+					s.setMention_rapport(rs.getString("mention_rapport"));
+					s.setDescription(rs.getString("description"));
+					//System.out.println(s.toString());
+					
+					
+					list.add(s);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		 return list;
-	 }
+			return list;
+		}
 	 
 }

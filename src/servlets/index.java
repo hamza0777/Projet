@@ -30,9 +30,9 @@ public class index extends HttpServlet {
 		 
 		   session.setAttribute("users", user);
 		   List<rapport> list=new ArrayList<rapport>();
-			list=b.affiche();
+			list=b.list();
 			request.setAttribute("list", list);
-			System.out.println(list.toString());
+			//System.out.println(list.toString());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
