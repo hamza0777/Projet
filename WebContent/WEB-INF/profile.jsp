@@ -39,7 +39,7 @@ if(email==null||email==""){
             </button>
             <ul class="dropdown-menu">
                 <li><a href="profile.php">Modifier Profile<span class="glyphicon glyphicon-cog icons" ></span></a> </li>
-                <li> <a href="deconnexion.php">Déconnecter<span class="glyphicon glyphicon-off icons"></span> </a></li>
+                <li> <a href="deconnexion">Déconnecter<span class="glyphicon glyphicon-off icons"></span> </a></li>
             </ul>
         </div>
 
@@ -54,21 +54,21 @@ if(email==null||email==""){
             <nav class="navbar navbar-inverse">
               <ul class="nav navbar-left" id="ul-nav">
                   <li class="active" > <a href="index">accueil  </a> </li>
-                    <li class="active" id="a"> <a href="#">Licence Appliquée <span class="caret"></span> </a> </li>
+                    <li class="active" id="a"> <a href="#">MDW <span class="caret"></span> </a> </li>
                   <div class="div-nav-page" id="aa"  hidden><br>
                       <a href="home.php?br=T.L.A TMW" class="lien-page pos-lient">-Rappots T.L.A TMW </a>
                   </div>
-                  <li> <a href="#" id="i">Licence Fondamentale<span class="caret"></span></a> </li>
+                  <li> <a href="#" id="i">RSI<span class="caret"></span></a> </li>
                   <div class="div-nav-page" id="ii" hidden><br>
 
                       <a href="home.php?br=T.L.A FIM" class="lien-page pos-lient">Rappots T.L.A FIM </a>
                   </div>
-                  <li> <a href="#" id="f">Master<span class="caret"></span></a> </li>
+                  <li> <a href="#" id="f">DSI<span class="caret"></span></a> </li>
                   <div class="div-nav-page" id="ff" hidden><br>
                       <a href="home.php?br=P.MSI" class="lien-page pos-lient">Rappots P.MSI</a><br>
                       <a href="home.php?br=D.MSI" class="lien-page pos-lient">Rappots D.MSI </a>
                   </div>
-                  <li> <a href="#" id="o">Ingénierie<span class="caret"></span></a> </li>
+                  
                   <div class="div-nav-page" id="oo" hidden><br>
 
                       <a href="home.php?br=T.G TMW" class="lien-page pos-lient">Rappots T.G TMW </a>
@@ -76,7 +76,7 @@ if(email==null||email==""){
                <%int type= users.getType_user(); 
                   if (!(type == 0)){  
                   %>
-             <li><a href="parametre.php" >Paramétres</a> </li>
+             <li><a href="parametre" >Paramétres</a> </li>
                   <% } %> 
               </ul>
             </nav>

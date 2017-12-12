@@ -146,6 +146,7 @@ public class base {
 		
 	 }
 	 public List<rapport> list() {
+		 loaddatabase();
 			List<rapport> list=new ArrayList<rapport>();
 			String query = "SELECT * FROM `rapports`";
 			try {
@@ -160,14 +161,13 @@ public class base {
 					s.setTitre_rapport(rs.getString("titre_rapport"));
 					s.setNom_etudi(rs.getString("nom_etudi"));
 					s.setPrenom_etudiant(rs.getString("prenom_etudiant"));
-					s.setTitre_rapport(rs.getString("rapport"));
+					s.setRapport(rs.getString("rapport"));
 					s.setAnnee_rapport(rs.getString("annee_rapport"));
 					s.setBranche_etudes(rs.getString("branche_etudes"));
 					s.setMention_rapport(rs.getString("mention_rapport"));
 					s.setDescription(rs.getString("description"));
 					//System.out.println(s.toString());
-					
-					
+		
 					list.add(s);
 				}
 			} catch (SQLException e) {
@@ -176,5 +176,76 @@ public class base {
 			}
 			return list;
 		}
+	 public rapport ajout(rapport obj) {
+			loaddatabase();
+			String query="INSERT INTO `rapports` (`id_rapport`, `Id_user`,`titre_rapport`, `nom_etudi`, `prenom_etudiant`, `rapport`, `annee_rapport`,`branche_etudes`,`mention_rapport`,`description`)"
+					+ " VALUES (NULL, ?, ?, ?, ?, ?, ?,?,?,?)";
+			
+			try {
+				PreparedStatement  prepdStmt = (PreparedStatement) connexion.prepareStatement(query);
+				prepdStmt.setInt(1,obj.getId_user());
+				prepdStmt.setString(2, obj.getTitre_rapport());
+				prepdStmt.setString(3, obj.getNom_etudi());	
+				prepdStmt.setString(4, obj.getPrenom_etudiant());
+				prepdStmt.setString(5, obj.getRapport());
+				prepdStmt.setString(6, obj.getAnnee_rapport());
+				prepdStmt.setString(7, obj.getBranche_etudes());
+				prepdStmt.setString(8, obj.getMention_rapport());
+				prepdStmt.setString(9, obj.getDescription());
+	
+				
+				prepdStmt.execute(); 
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			return obj;
+		}
+	 
+	 public boolean delete(int id) {
+		 loaddatabase();
+			String query="DELETE FROM `rapports` WHERE `id_rapport`="+id;
+			
+			 
+			try {
+				Statement stmt = (Statement) connexion.createStatement();
+			    stmt.executeUpdate(query);
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			return false;
+		}
+	 
+	 public rapport modiferRap (rapport obj) {
+		 loaddatabase();
+			String query ="UPDATE `rapports` SET "+"`titre_rapport` = ?, "	+"`nom_etudi` = ?, "+"`prenom_etudiant` = ? ,"+ "`rapport` = ?, "+ "`annee_rapport` = ?, " + "`branche_etudes` = ?, "+ "`mention_rapport` = ?, "+"`description`=?		"
+					+ " WHERE "
+					+ "`id_rapport` = ?";
+			
+			try {
+				PreparedStatement  prepdStmt = connexion.prepareStatement(query);
+				prepdStmt.setString(1, obj.getTitre_rapport());
+				prepdStmt.setString(2, obj.getNom_etudi());
+				prepdStmt.setString(3, obj.getPrenom_etudiant());
+				prepdStmt.setString(4, obj.getRapport());
+				prepdStmt.setString(5, obj.getAnnee_rapport());
+				prepdStmt.setString(6, obj.getBranche_etudes());
+				prepdStmt.setString(7, obj.getMention_rapport());
+				prepdStmt.setString(8, obj.getDescription());
+				prepdStmt.setInt(9, obj.getId_rapport());
+
+				
+
+				
+				
+				prepdStmt.execute(); 
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			return obj;
+		}
+	 
 	 
 }

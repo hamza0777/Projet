@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bdd.base;
-import beans.Utilisateur;
+
 
 @WebServlet("/modifier")
 public class modifier extends HttpServlet {
@@ -31,7 +31,7 @@ public class modifier extends HttpServlet {
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession session = request.getSession();
 			base b=new base();
-			Utilisateur users = (Utilisateur)session.getAttribute("users");
+			//Utilisateur users = (Utilisateur)session.getAttribute("users");
 			  String nom=request.getParameter("nom");
 			  String prenom=request.getParameter("prenom");
 			  String pass=request.getParameter("n_pass");
@@ -40,7 +40,7 @@ public class modifier extends HttpServlet {
 				request.setAttribute("email", email);
 				System.out.println(email);
 				System.out.println(nom);
-				 b.modifier(nom,prenom,pass,"khaled@lq.comk");
+				 b.modifier(nom,prenom,pass,email);
 			  response.sendRedirect( request.getContextPath()+"/index");
 			  /*boolean rs=b.verifemail(request.getParameter("email"));
 			    if (rs==false)

@@ -38,9 +38,7 @@ public class index extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		/*List<rapport> list=new ArrayList<rapport>();
-		list=b.affiche();
-		request.setAttribute("list", list);*/
+
 		
 		
 	}
